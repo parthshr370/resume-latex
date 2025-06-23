@@ -1,0 +1,12 @@
+Given the following resume text, structure it into a JSON format.
+
+{format_instructions}
+
+Resume text:
+{resume_text}
+
+Important:
+1. Ensure your output is a single, valid JSON object that conforms to the provided schema.
+2. Do not include any explanatory text, markdown formatting, or anything else outside of the JSON object itself.
+3. Pay close attention to the data types specified in the schema.
+4. If a value is not present in the resume text, omit the field from the JSON. 

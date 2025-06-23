@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark Orange Theme - Neutral Grays */
+    --background: 240 6% 10%;    /* #18181B - zinc-900 */
+    --foreground: 210 40% 98%;   /* #F9FAFB */
+
+    --card: 240 5% 14%;      /* #202022 - a bit lighter than background */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 6% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 22 100% 52%;      /* #F97316 */
+    --primary-muted: 25 95% 47%; /* #EA580C - a darker, muted orange for highlights */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 240 4% 26%;     /* #3F3F46 - zinc-700 */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 4% 26%;
+    --muted-foreground: 240 4% 65%; /* #A1A1AA - zinc-400 */
+
+    --accent: 22 100% 52%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 4% 26%;
+    --input: 240 5% 18%;        /* #27272A - zinc-800 */
+    --ring: 22 100% 52%;
+
+    --radius: 8px;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+
+  /* Remove all animations and effects */
+  * {
+    animation: none !important;
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* Clean button styles */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border rounded-lg;
+  }
+
+  /* Clean card styles */
+  .card-clean {
+    @apply bg-card border border-border rounded-lg shadow-sm;
+  }
+
+  /* Tab styles */
+  .tab-clean {
+    @apply bg-muted text-muted-foreground hover:bg-secondary hover:text-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Responsive utilities */
+  @media (max-width: 768px) {
+    .mobile-stack {
+      @apply flex-col space-y-4;
+    }
+    
+    .mobile-full-width {
+      @apply w-full;
+    }
+  }
+}
