@@ -1,0 +1,274 @@
+% Customizable Resume Template in LaTeX
+% Based on original resume by Parth Sharma
+% Author : Jake Gutierrez (original template)
+% Modified for template use
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage{textgreek}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+%----------PERSONAL INFORMATION----------
+% MODIFY THESE VARIABLES TO CUSTOMIZE YOUR RESUME
+\newcommand{\fullName}{Your Full Name}
+\newcommand{\phoneNumber}{+1-234-567-8900}
+\newcommand{\emailAddress}{your.email@example.com}
+\newcommand{\linkedinProfile}{https://linkedin.com/in/yourprofile}
+\newcommand{\twitterHandle}{https://twitter.com/yourhandle}
+\newcommand{\githubProfile}{https://github.com/yourusername}
+\newcommand{\mediumProfile}{https://medium.com/@yourusername}
+
+% Summary Section Content
+\newcommand{\professionalSummary}{
+    Professional summary goes here. Customize this section to highlight your key expertise, 
+    skills, and focus areas. Include relevant technologies, frameworks, and your passion areas.
+}
+
+% Education Information
+\newcommand{\universityName}{Your University Name}
+\newcommand{\universityLocation}{City, State}
+\newcommand{\degreeName}{Your Degree Name}
+\newcommand{\educationDuration}{Month Year - Present/Month Year}
+
+\newcommand{\schoolName}{Your High School Name}
+\newcommand{\schoolLocation}{City, State}
+\newcommand{\schoolCurriculum}{Curriculum Type}
+\newcommand{\schoolDuration}{Month Year - Month Year}
+
+%----------FONT OPTIONS----------
+% Uncomment one of the following font options
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape \fullName} \\ \vspace{1pt}
+    \small \href{tel:\phoneNumber}{\textcolor{blue}{\underline{\phoneNumber}}} $|$ \href{mailto:\emailAddress}{\textcolor{blue}{\underline{\emailAddress}}} $|$ 
+    \href{\linkedinProfile}{\textcolor{blue}{\underline{LinkedIn}}} $|$ 
+    \href{\twitterHandle}{\textcolor{blue}{\underline{Twitter}}} $|$ 
+    \href{\githubProfile}{\textcolor{blue}{\underline{Github}}}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+\small{\professionalSummary}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {\universityName}{\universityLocation}
+      {\degreeName}{\educationDuration}
+    \resumeSubheading
+      {\schoolName}{\schoolLocation}
+      {\schoolCurriculum}{\schoolDuration}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    % EXPERIENCE ENTRY 1 - Customize as needed
+    \resumeSubheading
+      {Job Title 1}{Start Date - End Date}
+      {Company Name 1}{Location}
+      \resumeItemListStart
+        \resumeItem{Description of your key achievement or responsibility 1.}
+        \resumeItem{Description of your key achievement or responsibility 2.}
+        \resumeItem{Description of your key achievement or responsibility 3.}
+        \resumeItem{Description of your key achievement or responsibility 4.}
+        \resumeItem{Tech Stack - \textit{\textbf{Technology 1}, \textbf{Technology 2}, Technology 3, Technology 4}}
+      \resumeItemListEnd
+  
+    % EXPERIENCE ENTRY 2 - Add more as needed
+    \resumeSubheading
+      {Job Title 2}{Start Date - End Date}
+      {Company Name 2}{Location}
+      \resumeItemListStart
+        \resumeItem{Description of your key achievement or responsibility 1.}
+        \resumeItem{Description of your key achievement or responsibility 2.}
+        \resumeItem{Description of your key achievement or responsibility 3.}
+        \resumeItem{Tech Stack - \textit{\textbf{Technology 1}, \textbf{Technology 2}, Technology 3}}
+      \resumeItemListEnd
+
+    % ADD MORE EXPERIENCE ENTRIES HERE AS NEEDED
+    % Copy the resumeSubheading block above and modify
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+
+\resumeSubHeadingListStart
+
+    % PROJECT 1
+    \resumeProjectHeading
+        {\textbf{Project Name 1} $|$ \emph{Organization/Context}}{}
+        \resumeItemListStart
+            \resumeItem{Description of what you built or accomplished in this project.}
+            \resumeItem{Technical details about implementation, architecture, or methodology.}
+            \resumeItem{Quantifiable results or improvements achieved.}
+            \resumeItem{Tools: \textit{\textbf{Primary Tool 1}, \textbf{Primary Tool 2}, Other Tools}.}
+        \resumeItemListEnd
+
+    % PROJECT 2
+    \resumeProjectHeading
+        {\textbf{Project Name 2} $|$ \emph{Organization/Context}}{}
+        \resumeItemListStart
+            \resumeItem{Description of what you built or accomplished in this project.}
+            \resumeItem{Technical details about implementation, architecture, or methodology.}
+            \resumeItem{Quantifiable results or improvements achieved.}
+            \resumeItem{Tools: \textit{\textbf{Primary Tool 1}, \textbf{Primary Tool 2}, Other Tools}.}
+        \resumeItemListEnd
+
+    % PROJECT 3
+    \resumeProjectHeading
+        {\textbf{Project Name 3} $|$ \emph{Organization/Context}}{}
+        \resumeItemListStart
+            \resumeItem{Description of what you built or accomplished in this project.}
+            \resumeItem{Technical details about implementation, architecture, or methodology.}
+            \resumeItem{Quantifiable results or improvements achieved.}
+            \resumeItem{Tools: \textit{\textbf{Primary Tool 1}, \textbf{Primary Tool 2}, Other Tools}.}
+        \resumeItemListEnd
+
+    % ADD MORE PROJECTS HERE AS NEEDED
+
+\resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Category 1}{: Skill 1, Skill 2, Skill 3, Skill 4, Skill 5} \\
+     \textbf{Category 2}{: Skill 1, Skill 2, Skill 3, Skill 4, Skill 5} \\
+     \textbf{Languages}{: Language 1, Language 2, Language 3, Language 4} \\
+     \textbf{Developer Tools}{: Tool 1, Tool 2, Tool 3, Tool 4, Tool 5} \\
+     \textbf{Specialization Area}{: Skill 1, Skill 2, Skill 3, Skill 4} \\
+     \textbf{Mathematics}{: Area 1, Area 2, Area 3, Area 4} \\
+     \textbf{Other Skills}{: Skill 1, Skill 2, Skill 3, Skill 4}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+% OPTIONAL SECTIONS - Uncomment and customize as needed
+
+% %-----------ACHIEVEMENTS-----------
+% \section{Achievements}
+%  \resumeSubHeadingListStart
+%    \resumeProjectHeading
+%        {Achievement Title}{Date}
+%        \resumeItemListStart
+%            \resumeItem{Description of the achievement and its significance.}
+%        \resumeItemListEnd
+%  \resumeSubHeadingListEnd
+
+% %-----------CERTIFICATIONS-----------
+% \section{Certifications}
+%  \resumeSubHeadingListStart
+%    \resumeProjectHeading
+%        {Certification Name $|$ \emph{Issuing Organization}}{Date}
+%  \resumeSubHeadingListEnd
+
+% %-----------PUBLICATIONS-----------
+% \section{Publications}
+%  \resumeSubHeadingListStart
+%    \resumeProjectHeading
+%        {Publication Title}{Date}
+%        \resumeItemListStart
+%            \resumeItem{Authors, Journal/Conference Name, DOI/Link if applicable.}
+%        \resumeItemListEnd
+%  \resumeSubHeadingListEnd
+
+%-------------------------------------------
+\end{document} 

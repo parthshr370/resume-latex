@@ -1,0 +1,195 @@
+You are a world-class LaTeX expert specializing in resume creation. Your task is to convert a Markdown resume into a complete, compilable, and professional LaTeX document using a specific template.
+
+**Objective:**
+Generate a full LaTeX document by populating the provided template with the information from the given Markdown resume.
+
+**LaTeX Template Structure:**
+The template is a full `.tex` file that starts with `\documentclass` and ends with `\end{document}`. It uses custom commands to define personal information and structure the content. You will not be given the full template, but you must reconstruct it and fill it based on the Markdown input.
+
+**Key areas to populate:**
+
+1.  **Preamble Commands:** You must define the user's personal information by generating `\newcommand` definitions in the preamble.
+    *   `\newcommand{\fullName}{...}`
+    *   `\newcommand{\phoneNumber}{...}`
+    *   `\newcommand{\emailAddress}{...}`
+    *   `\newcommand{\linkedinProfile}{...}`
+    *   `\newcommand{\twitterHandle}{...}`
+    *   `\newcommand{\githubProfile}{...}`
+    *   `\newcommand{\mediumProfile}{...}` (if available)
+
+2.  **Summary:** The summary from the Markdown should be placed in the `\professionalSummary` command.
+
+3.  **Content Sections (Experience, Projects, etc.):** You must use the custom commands like `\resumeSubheading`, `\resumeProjectHeading`, and `\resumeItem` to structure the main content of the resume inside the `\begin{document}` environment.
+
+**IMPORTANT FORMATTING RULES:**
+
+1. **Skills Section:** Do NOT use nested `\resumeSubheading` commands in the Skills section. Instead, use `\resumeSubItem` for each skill category like this:
+   ```latex
+   \section{Skills}
+     \resumeSubHeadingListStart
+       \resumeSubItem{\textbf{Technical Skills:} List, of, skills, here}
+       \resumeSubItem{\textbf{Soft Skills:} List, of, skills, here}
+     \resumeSubHeadingListEnd
+   ```
+
+2. **Never nest `\resumeItemListStart` inside `\resumeSubheading` in the Skills section** - this causes LaTeX compilation errors.
+
+**Input/Output Example:**
+
+---
+**INPUT (Markdown Resume):**
+---
+```markdown
+# Parth Sharma
+- Phone: 9971361784
+- Email: parthshr370@gmail.com
+- LinkedIn: https://www.linkedin.com/in/parthshr370/
+- Twitter: https://twitter.com/parthshr370/
+- Github: https://github.com/parthshr370/
+- Medium: https://medium.com/@parthshr370
+
+## Summary
+Agentic AI Engineer with expertise in orchestrating multi-agent systems using LangChain and LangGraph. CAMEL-AI contributor specializing in building and implementing MCP servers for agent-environment interactions. Focused on agentic orchestration, workflow design, and creating scalable AI solutions through containerization.
+
+## Experience
+### AI Engineer Intern | ESDS Limited
+*Feb 2025 - Apr 2025 | Nashik, India*
+- Created a multi-agent HR system using **LangChain** framework.
+- Utilized **LangGraph** for real-time workflow orchestration.
+- Tech Stack: *LangChain, LangGraph, MongoDB, Docker, Python*
+
+### Research Intern | IIIT Allahabad
+*May 2024 - Jul 2024 | Allahabad, India*
+- Developed a fusion model to improve Process Prediction using **LSTM** and **CNN**.
+- Worked on Fine-tuning LLMs for process modeling using **POWL** and **PM4PY**.
+- Tech Stack: *PyTorch, Langchain, PM4PY, Pandas*
+```
+
+---
+**OUTPUT (Full LaTeX Document):**
+---
+```latex
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage{textgreek}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+%----------PERSONAL INFORMATION----------
+\newcommand{\fullName}{Parth Sharma}
+\newcommand{\phoneNumber}{9971361784}
+\newcommand{\emailAddress}{parthshr370@gmail.com}
+\newcommand{\linkedinProfile}{https://www.linkedin.com/in/parthshr370/}
+\newcommand{\twitterHandle}{https://twitter.com/parthshr370/}
+\newcommand{\githubProfile}{https://github.com/parthshr370/}
+\newcommand{\mediumProfile}{https://medium.com/@parthshr370}
+
+% Summary Section Content
+\newcommand{\professionalSummary}{
+    Agentic AI Engineer with expertise in orchestrating multi-agent systems using \textbf{LangChain} and \textbf{LangGraph}. \textbf{CAMEL-AI} contributor specializing in building and implementing MCP servers for agent-environment interactions. Focused on agentic orchestration, workflow design, and creating scalable AI solutions through containerization. Regularly write technical blogs at \href{https://medium.com/@parthshr370}{\textcolor{blue}{\underline{Medium}}}. Passionate about developing intelligent automation systems that leverage the full potential of large language models.
+}
+
+% Education Information
+% NOTE: The AI should fill this from the markdown if provided.
+\newcommand{\universityName}{Manipal University Jaipur}
+\newcommand{\universityLocation}{Jaipur}
+\newcommand{\degreeName}{Bachelor of Technology in Data Science}
+\newcommand{\educationDuration}{Sep 2022 - Present}
+\newcommand{\schoolName}{Blue Bells Public School}
+\newcommand{\schoolLocation}{Gurugram}
+\newcommand{\schoolCurriculum}{CBSE}
+\newcommand{\schoolDuration}{Apr 2007 - May 2022}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{\vspace{-4pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{\item\small{{#1 \vspace{-2pt}}}}
+\newcommand{\resumeSubheading}[4]{\vspace{-2pt}\item\begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}\textbf{#1} & #2 \\ \textit{\small#3} & \textit{\small #4} \\ \end{tabular*}\vspace{-7pt}}
+\newcommand{\resumeSubSubheading}[2]{\item\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}\textit{\small#1} & \textit{\small #2} \\ \end{tabular*}\vspace{-7pt}}
+\newcommand{\resumeProjectHeading}[2]{\item\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}\small#1 & #2 \\ \end{tabular*}\vspace{-7pt}}
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge \scshape \fullName} \\ \vspace{1pt}
+    \small \href{tel:\phoneNumber}{\textcolor{blue}{\underline{\phoneNumber}}} $|$ \href{mailto:\emailAddress}{\textcolor{blue}{\underline{\emailAddress}}} $|$ 
+    \href{\linkedinProfile}{\textcolor{blue}{\underline{LinkedIn}}} $|$ 
+    \href{\twitterHandle}{\textcolor{blue}{\underline{Twitter}}} $|$ 
+    \href{\githubProfile}{\textcolor{blue}{\underline{Github}}}
+\end{center}
+
+\section{Summary}
+\small{\professionalSummary}
+
+% Education section would be generated here based on markdown
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading{\universityName}{\universityLocation}{\degreeName}{\educationDuration}
+    \resumeSubheading{\schoolName}{\schoolLocation}{\schoolCurriculum}{\schoolDuration}
+  \resumeSubHeadingListEnd
+
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading{AI Engineer Intern}{Feb 2025 - Apr 2025}{ESDS Limited}{Nashik, India}
+      \resumeItemListStart
+        \resumeItem{Created a multi-agent HR system using \textbf{LangChain} framework.}
+        \resumeItem{Utilized \textbf{LangGraph} for real-time workflow orchestration.}
+        \resumeItem{Tech Stack - \textit{\textbf{LangChain}, \textbf{LangGraph}, MongoDB, Docker, Python}}
+      \resumeItemListEnd
+    \resumeSubheading{Research Intern}{May 2024 - Jul 2024}{Indian Institute of Information Technology Allahabad}{Allahabad, India}
+      \resumeItemListStart
+        \resumeItem{Developed a fusion model to improve Process Prediction using \textbf{LSTM} and \textbf{CNN}.}
+        \resumeItem{Worked on Fine-tuning LLMs for process modeling using \textbf{POWL} and \textbf{PM4PY}.}
+        \resumeItem{Tech Stack - \textit{\textbf{PyTorch}, \textbf{Langchain}, PM4PY, Pandas}}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+% Skills section - CORRECT FORMAT
+\section{Skills}
+  \resumeSubHeadingListStart
+    \resumeSubItem{\textbf{Technical Skills:} LangChain, LangGraph, Python, PyTorch, MongoDB, Docker, PM4PY, Pandas}
+    \resumeSubItem{\textbf{Soft Skills:} Team Leadership, Problem Solving, Communication, Project Management}
+  \resumeSubHeadingListEnd
+
+% Projects would go here, generated from markdown
+% ...
+
+\end{document}
+```
+
+**Your Task:**
+Now, take the following Markdown resume and convert it into a complete and valid LaTeX document, following the structure and example above. Your output MUST be only the raw LaTeX code.
+
+```markdown
+{markdown_resume}
+``` 
