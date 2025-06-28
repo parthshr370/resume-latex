@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from .agents.latex_generator import LaTeXGenerator
-from .schemas.resume_schema import Resume
+from .schemas.resume_schema import ResumeSchema
 
 class ResumeGenerator:
     def __init__(self):
@@ -11,7 +11,7 @@ class ResumeGenerator:
         if not self.api_key:
             raise ValueError("API_KEY not found in environment variables.")
 
-    def process_resume(self, resume_data: Resume, output_dir: str = "backend/latex_resume_generator/output") -> tuple[str, str, str, str]:
+    def process_resume(self, resume_data: ResumeSchema, output_dir: str = "backend/latex_resume_generator/output") -> tuple[str, str, str, str]:
         """
         Processes resume data to generate a LaTeX file and structured JSON.
 
@@ -46,21 +46,22 @@ class ResumeGenerator:
 
 def main():
     # Example usage with a Resume object
-    resume_data = Resume(
-        name="John Doe",
-        contact={
+    resume_data = ResumeSchema(
+        personal_info={
+            "name": "John Doe",
             "email": "john.doe@example.com",
             "phone": "123-456-7890",
             "location": "San Francisco, CA",
-            "linkedin": "linkedin.com/in/johndoe",
-            "github": "github.com/johndoe"
+            "linkedin_url": "linkedin.com/in/johndoe",
+            "github_url": "github.com/johndoe"
         },
         summary="A summary about John Doe.",
         education=[
             {
                 "institution": "University of California",
                 "degree": "MS in Computer Science",
-                "graduation_date": "2024",
+                "start_date": "2020",
+                "end_date": "2024",
             }
         ],
         experience=[
@@ -69,12 +70,14 @@ def main():
                 "position": "Software Engineer",
                 "start_date": "2022",
                 "end_date": "Present",
-                "achievements": ["Did something cool", "Did another cool thing"],
+                "responsibilities": ["Did something cool", "Did another cool thing"],
             }
         ],
-        skills=[
-            {"category": "Programming", "items": ["Python", "JavaScript"]}
-        ]
+        projects=[],
+        skills={
+            "technical": ["Python", "JavaScript"],
+            "soft": ["Communication", "Leadership"]
+        }
     )
     generator = ResumeGenerator()
     generator.process_resume(resume_data, output_dir="backend/latex_resume_generator/output")

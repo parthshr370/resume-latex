@@ -1,12 +1,14 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
-const config = {
+const config: Config = {
 	darkMode: ["class"],
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
+		"*.{js,ts,jsx,tsx,mdx}",
 	],
 	prefix: "",
 	theme: {
@@ -53,10 +55,28 @@ const config = {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 			},
+			fontFamily: {
+				sans: ["var(--font-inter)", ...fontFamily.sans],
+				latex: ["Computer Modern", "serif"],
+			},
 			borderRadius: {
+				xl: "1rem",
+				"2xl": "1.5rem",
+				full: "9999px",
 				lg: "var(--radius)",
 				md: "calc(var(--radius) - 2px)",
 				sm: "calc(var(--radius) - 4px)",
+			},
+			boxShadow: {
+				"neo-white-sm": "4px 4px 0px 0px rgba(255,255,255,0.7)",
+				"neo-white-md": "6px 6px 0px 0px rgba(255,255,255,0.7)",
+				"neo-white-lg": "8px 8px 0px 0px rgba(255,255,255,1)",
+				"neo-black-sm": "4px 4px 0px 0px rgba(0,0,0,0.5)",
+				"neo-black-md": "6px 6px 0px 0px rgba(0,0,0,0.75)",
+			},
+			backgroundImage: {
+				"cursor-hero-gradient":
+					"radial-gradient(ellipse 80% 50% at 5% 20%, rgba(88, 3, 111, 0.6) 0%, transparent 80%), radial-gradient(ellipse 60% 40% at 90% 30%, rgba(215, 58, 141, 0.5) 0%, transparent 70%), radial-gradient(ellipse 70% 50% at 50% 85%, rgba(46, 137, 167, 0.5) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 75% 75%, rgba(60, 179, 113, 0.5) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 25% 85%, rgba(255, 140, 0, 0.4) 0%, transparent 70%)",
 			},
 			keyframes: {
 				'accordion-down': {
@@ -74,7 +94,7 @@ const config = {
 			},
 		}
 	},
-	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 
 export default config;

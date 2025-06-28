@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 from typing import Dict, Any
 
@@ -6,8 +7,9 @@ from rich import print
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
+from dotenv import load_dotenv
 
-from backend.latex_resume_generator.schemas.resume_schema import Resume
+from backend.latex_resume_generator.schemas.resume_schema import ResumeSchema
 
 
 class ResumeParser:
@@ -20,7 +22,7 @@ class ResumeParser:
         )
         
         # Set up a Pydantic parser
-        self.parser = PydanticOutputParser(pydantic_object=Resume)
+        self.parser = PydanticOutputParser(pydantic_object=ResumeSchema)
 
         # Load prompt template
         prompt_path = Path(__file__).parent.parent / "prompts" / "resume_parsing_prompt.txt"

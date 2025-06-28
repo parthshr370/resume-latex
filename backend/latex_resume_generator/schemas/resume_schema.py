@@ -1,87 +1,40 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional
 
-class Contact(BaseModel):
-    email: str
-    phone: str
-    location: str
-    linkedin: Optional[str] = None
-    github: Optional[str] = None
-    twitter: Optional[str] = None
-
-class Education(BaseModel):
-    institution: str
-    location: Optional[str] = None
-    degree: str
-    graduation_date: str
-    gpa: Optional[str] = None
-    achievements: Optional[List[str]] = None
-class Contact(BaseModel):
-    email: str
-    phone: str
-    location: str
-    linkedin: Optional[str] = None
-    github: Optional[str] = None
-    twitter: Optional[str] = None
-
-class Education(BaseModel):
-    institution: str
-    location: Optional[str] = None
-    degree: str
-    graduation_date: str
-    gpa: Optional[str] = None
-    achievements: Optional[List[str]] = None
+class PersonalInfo(BaseModel):
+    name: str = Field(..., description="Full name")
+    email: str = Field(..., description="Email address")
+    phone: str = Field(..., description="Phone number")
+    location: str = Field(..., description="City and state, e.g., San Francisco, CA")
+    linkedin_url: Optional[str] = Field(None, description="URL of LinkedIn profile")
+    github_url: Optional[str] = Field(None, description="URL of GitHub profile")
 
 class Experience(BaseModel):
-    company: str
-    position: str
-    location: Optional[str] = None
-    start_date: str
-    end_date: str
-    achievements: List[str]
-    technologies: Optional[List[str]] = None
+    company: str = Field(..., description="Company name")
+    position: str = Field(..., description="Job title")
+    start_date: str = Field(..., description="Start date of employment")
+    end_date: str = Field(..., description="End date of employment (or 'Present')")
+    responsibilities: List[str] = Field(..., description="List of key responsibilities and accomplishments")
 
 class Project(BaseModel):
-    name: str
-    context: Optional[str] = None
-    description: str
-    achievements: List[str]
-    technologies: List[str]
+    name: str = Field(..., description="Name of the project")
+    description: str = Field(..., description="Brief description of the project")
+    technologies: List[str] = Field(..., description="List of technologies used in the project")
 
-class Skill(BaseModel):
-    category: str
-    items: List[str]
+class Education(BaseModel):
+    institution: str = Field(..., description="Name of the university or institution")
+    degree: str = Field(..., description="Degree obtained")
+    start_date: str = Field(..., description="Start date of education")
+    end_date: str = Field(..., description="End date of education or graduation date")
 
-class Resume(BaseModel):
-    name: str
-    contact: Contact
-    summary: Optional[str] = None
-    education: List[Education]
-    experience: List[Experience]
-    projects: Optional[List[Project]] = None
-    skills: List[Skill] 
-    location: Optional[str] = None
-    start_date: str
-    end_date: str
-    achievements: List[str]
-    technologies: Optional[List[str]] = None
+class Skills(BaseModel):
+    technical: List[str] = Field(..., description="List of technical skills")
+    soft: List[str] = Field(..., description="List of soft skills")
 
-class Project(BaseModel):
-    name: str
-    context: Optional[str] = None
-    description: str
-    achievements: List[str]
-    technologies: List[str]
-
-class Skill(BaseModel):
-    category: str
-    items: List[str]
-
-class Resume(BaseModel):
-    name: str
-    contact: Contact
-    summary: Optional[str] = None
-    education: List[Education]
-    experience: List[Experience]
-    projects: Optional[List[Project]] = None
-    skills: List[Skill] 
+class ResumeSchema(BaseModel):
+    personal_info: PersonalInfo = Field(..., alias='personal_info')
+    summary: str = Field(..., description="Brief professional summary")
+    experience: List[Experience] = Field(..., description="List of professional experiences")
+    projects: List[Project] = Field(..., description="List of projects")
+    education: List[Education] = Field(..., description="List of educational qualifications")
+    skills: Skills = Field(..., description="Technical and soft skills") 

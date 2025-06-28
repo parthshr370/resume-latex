@@ -72,7 +72,6 @@ Agentic AI Engineer with expertise in orchestrating multi-agent systems using La
 \documentclass[letterpaper,11pt]{article}
 
 \usepackage{latexsym}
-\usepackage{textgreek}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
 \usepackage{marvosym}

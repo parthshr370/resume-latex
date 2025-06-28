@@ -8,6 +8,7 @@ from io import BytesIO
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import Optional
 from dotenv import load_dotenv
 
 # --- Path and Module Setup ---
@@ -28,6 +29,7 @@ from backend.latex_resume_generator.agents.markdown_generator import (
 from backend.latex_resume_generator.utils.pdf_reader import (
     extract_text_from_pdf
 )
+from backend.latex_resume_generator.schemas.resume_schema import ResumeSchema
 
 # --- Helper Function for PDF Compilation ---
 def compile_latex_to_pdf(latex_file_path: str, output_dir: str):
@@ -73,9 +75,15 @@ class InitialGenerationResponse(BaseModel):
 class MarkdownInput(BaseModel):
     markdown_str: str
 
+class MarkdownResponse(BaseModel):
+    markdown_str: str
+
 class FinalGenerationResponse(BaseModel):
     latex_str: str
     pdf_b64: str
+
+class ResumeDataInput(BaseModel):
+    resume_data_json: str
 
 # --- Full Text Builder ---
 def get_full_resume_text(resume_data: dict, pdf_text: str) -> str:
@@ -137,49 +145,67 @@ def get_full_resume_text(resume_data: dict, pdf_text: str) -> str:
         
     return "\n".join(text_parts).strip()
 
-# --- API Endpoint ---
-@app.post("/api/generate-resume", response_model=InitialGenerationResponse)
-async def generate_resume(
-    resume_data_json: str = Form(...),
-    file: UploadFile = File(None)
-):
+# --- API Endpoints ---
+
+@app.post("/api/parse-resume", response_model=ResumeSchema)
+async def parse_resume_from_pdf(file: UploadFile = File(...)):
     """
-    Receives resume data and an optional PDF file, processes them, 
-    and returns the generated resume files.
+    Receives a PDF file, extracts text, parses it, and returns structured JSON.
     """
     try:
-        # Load API Key
         load_dotenv(os.path.join(PROJECT_ROOT, '.env'))
         api_key = os.getenv("API_KEY")
         if not api_key:
             raise HTTPException(status_code=500, detail="API_KEY not found on server.")
 
-        resume_data = json.loads(resume_data_json)
-        
-        # Extract text from PDF if provided
-        pdf_text = ""
-        if file:
-            contents = await file.read()
-            pdf_text = extract_text_from_pdf(BytesIO(contents))
+        contents = await file.read()
+        pdf_text = extract_text_from_pdf(BytesIO(contents))
 
-        # Get the full text for the parser
-        full_resume_text = get_full_resume_text(resume_data, pdf_text)
-        
-        # --- AI Processing ---
+        if not pdf_text.strip():
+            raise HTTPException(status_code=400, detail="Could not extract text from PDF.")
+
         parser = ResumeParser(api_key=api_key)
-        parsed_data = parser.parse(full_resume_text)
+        parsed_data = parser.parse(pdf_text)
 
-        markdown_generator = MarkdownGenerator(api_key=api_key)
-        markdown_content = markdown_generator.generate(parsed_data)
-        
-        return InitialGenerationResponse(
-            json_str=json.dumps(parsed_data, indent=4),
-            markdown_str=markdown_content
-        )
+        # Validate with Pydantic model before returning
+        return ResumeSchema(**parsed_data)
 
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print(f"An unexpected error occurred in /api/parse-resume: {e}")
         raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {e}")
+
+
+@app.post("/api/generate-markdown", response_model=MarkdownResponse)
+async def generate_markdown_from_json(
+    resume_data_json: str = Form(...)
+):
+    """
+    Receives resume data as JSON, validates it, and generates a Markdown string.
+    """
+    try:
+        load_dotenv(os.path.join(PROJECT_ROOT, '.env'))
+        api_key = os.getenv("API_KEY")
+        if not api_key:
+            raise HTTPException(status_code=500, detail="API_KEY not found on server.")
+        
+        # Parse the JSON string from the form data
+        resume_data = json.loads(resume_data_json)
+        
+        # Validate data with our Pydantic schema
+        validated_data = ResumeSchema(**resume_data)
+
+        markdown_generator = MarkdownGenerator(api_key=api_key)
+        # We pass the validated data dictionary to the generator
+        markdown_content = markdown_generator.generate(validated_data.dict())
+        
+        return MarkdownResponse(markdown_str=markdown_content)
+
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid JSON format in resume_data_json.")
+    except Exception as e:
+        print(f"An unexpected error occurred in /api/generate-markdown: {e}")
+        raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {e}")
+
 
 @app.post("/api/generate-latex", response_model=FinalGenerationResponse)
 async def generate_latex_from_markdown(data: MarkdownInput):
@@ -198,37 +224,223 @@ async def generate_latex_from_markdown(data: MarkdownInput):
         latex_generator = LaTeXGenerator(api_key=api_key)
         final_latex_content = latex_generator.generate(data.markdown_str)
 
-        # 2. Save the generated content directly to the .tex file
+        # 2. Save the LaTeX content to a temporary file
         output_dir = os.path.join(PROJECT_ROOT, "backend", "latex_resume_generator", "output")
         os.makedirs(output_dir, exist_ok=True)
         
-        tex_path = os.path.join(output_dir, "resume.tex")
-        with open(tex_path, "w") as f:
+        # Clean up old files
+        for f in os.listdir(output_dir):
+            os.remove(os.path.join(output_dir, f))
+
+        temp_latex_path = os.path.join(output_dir, "resume.tex")
+        with open(temp_latex_path, "w") as f:
             f.write(final_latex_content)
 
-        # 3. Compile the .tex file to PDF
+        # 3. Compile the .tex file
+        success, log = compile_latex_to_pdf(temp_latex_path, output_dir)
+        
         pdf_path = os.path.join(output_dir, "resume.pdf")
-        pdf_b64 = ""
-        success, log = compile_latex_to_pdf(tex_path, output_dir)
-        if success and os.path.exists(pdf_path):
-           with open(pdf_path, "rb") as pdf_file:
-               pdf_b64 = base64.b64encode(pdf_file.read()).decode('utf-8')
-        elif not success:
-            print(f"PDF Compilation Failed:\n{log}") # Log error to backend console
+
+        if not success or not os.path.exists(pdf_path):
+            error_detail = {
+                "message": "Failed to compile LaTeX to PDF.",
+                "log": log,
+                "latex_code": final_latex_content
+            }
+            # Log the full error for debugging on the server
+            print(f"LaTeX Compilation Error: {log}")
+            # Raise HTTPException with the detailed error message
+            raise HTTPException(status_code=500, detail=error_detail)
+
+        # 4. Read the generated PDF and encode it
+        with open(pdf_path, "rb") as pdf_file:
+            pdf_b64 = base64.b64encode(pdf_file.read()).decode('utf-8')
 
         return FinalGenerationResponse(
             latex_str=final_latex_content,
             pdf_b64=pdf_b64
         )
     
+    except HTTPException as e:
+        # Re-raise HTTPExceptions to not mask them
+        raise e
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print(f"An unexpected error occurred in /api/generate-latex: {e}")
         raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {e}")
+
+# --- Enhanced API Endpoints ---
+
+class EnhancedGenerationResponse(BaseModel):
+    original_json: str
+    enhanced_json: str
+    markdown_str: str
+
+@app.post("/api/parse-and-enhance", response_model=EnhancedGenerationResponse)
+async def parse_and_enhance_resume(
+    file: Optional[UploadFile] = File(None),
+    resume_data_json: Optional[str] = Form(None),
+    enhance: bool = Form(True)
+):
+    """
+    Parses a resume from PDF or JSON and optionally enhances it with AI.
+    """
+    try:
+        load_dotenv(os.path.join(PROJECT_ROOT, '.env'))
+        api_key = os.getenv("API_KEY")
+        if not api_key:
+            raise HTTPException(status_code=500, detail="API_KEY not found on server.")
+
+        # Parse resume data
+        if file:
+            # Parse from PDF
+            contents = await file.read()
+            pdf_text = extract_text_from_pdf(BytesIO(contents))
+            
+            if not pdf_text.strip():
+                raise HTTPException(status_code=400, detail="Could not extract text from PDF.")
+            
+            parser = ResumeParser(api_key=api_key)
+            parsed_data = parser.parse(pdf_text)
+        elif resume_data_json:
+            # Parse from provided JSON
+            parsed_data = json.loads(resume_data_json)
+        else:
+            raise HTTPException(status_code=400, detail="Either file or resume_data_json must be provided.")
+        
+        # Store original data
+        original_json = json.dumps(parsed_data, indent=2)
+        
+        # Enhance if requested
+        if enhance:
+            try:
+                from backend.latex_resume_generator.agents.resume_enhancer import ResumeEnhancer
+                from backend.latex_resume_generator.agents.enhanced_markdown_generator import EnhancedMarkdownGenerator
+                
+                enhancer = ResumeEnhancer(api_key=api_key)
+                enhanced_data = enhancer.enhance(parsed_data)
+                
+                # Generate enhanced markdown
+                markdown_generator = EnhancedMarkdownGenerator(api_key=api_key)
+                markdown_content = markdown_generator.generate(enhanced_data)
+            except ImportError:
+                # Fallback to basic generation if enhanced modules not available
+                enhanced_data = parsed_data
+                markdown_generator = MarkdownGenerator(api_key=api_key)
+                markdown_content = markdown_generator.generate(ResumeSchema(**enhanced_data).dict())
+        else:
+            enhanced_data = parsed_data
+            markdown_generator = MarkdownGenerator(api_key=api_key)
+            markdown_content = markdown_generator.generate(ResumeSchema(**enhanced_data).dict())
+        
+        return EnhancedGenerationResponse(
+            original_json=original_json,
+            enhanced_json=json.dumps(enhanced_data, indent=2),
+            markdown_str=markdown_content
+        )
+
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid JSON format in resume_data_json.")
+    except Exception as e:
+        print(f"Error in parse_and_enhance: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/generate-enhanced-latex", response_model=FinalGenerationResponse)
+async def generate_enhanced_latex(
+    markdown_str: str = Form(...),
+    enhanced_data_json: str = Form(...),
+    style_preferences: Optional[str] = Form(None)
+):
+    """
+    Generates enhanced LaTeX and PDF from markdown and data.
+    """
+    try:
+        load_dotenv(os.path.join(PROJECT_ROOT, '.env'))
+        api_key = os.getenv("API_KEY")
+        if not api_key:
+            raise HTTPException(status_code=500, detail="API_KEY not found on server.")
+        
+        try:
+            from backend.latex_resume_generator.agents.enhanced_latex_generator import EnhancedLaTeXGenerator
+            
+            # Parse enhanced data
+            enhanced_data = json.loads(enhanced_data_json)
+            
+            # Parse style preferences if provided
+            style_prefs = json.loads(style_preferences) if style_preferences else None
+            
+            # Generate enhanced LaTeX
+            latex_generator = EnhancedLaTeXGenerator(api_key=api_key)
+            
+            # First, get the template content
+            template_path = os.path.join(
+                PROJECT_ROOT, "backend", "latex_resume_generator", "templates", "enhanced_resume_template.tex"
+            )
+            with open(template_path, 'r') as f:
+                template_content = f.read()
+            
+            # Generate the document content
+            latex_content = latex_generator.generate(markdown_str, style_prefs)
+            
+            # Combine template and content
+            final_latex_content = template_content.replace(
+                "% CONTENT SECTIONS - TO BE FILLED BY GENERATOR",
+                latex_content
+            ).replace(
+                "% The generator will insert appropriate sections here based on the enhanced resume data",
+                ""
+            )
+            
+        except ImportError:
+            # Fallback to basic LaTeX generation
+            latex_generator = LaTeXGenerator(api_key=api_key)
+            final_latex_content = latex_generator.generate(markdown_str)
+
+        # Save and compile
+        output_dir = os.path.join(PROJECT_ROOT, "backend", "latex_resume_generator", "output")
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Clean up old files
+        for f in os.listdir(output_dir):
+            if f.endswith(('.tex', '.pdf', '.aux', '.log', '.out')):
+                os.remove(os.path.join(output_dir, f))
+        
+        temp_latex_path = os.path.join(output_dir, "enhanced_resume.tex")
+        with open(temp_latex_path, "w") as f:
+            f.write(final_latex_content)
+        
+        # Compile to PDF
+        success, log = compile_latex_to_pdf(temp_latex_path, output_dir)
+        
+        pdf_path = os.path.join(output_dir, "enhanced_resume.pdf")
+        
+        if not success or not os.path.exists(pdf_path):
+            error_detail = {
+                "message": "Failed to compile LaTeX to PDF.",
+                "log": log,
+                "latex_code": final_latex_content
+            }
+            print(f"LaTeX Compilation Error: {log}")
+            raise HTTPException(status_code=500, detail=error_detail)
+        
+        # Read and encode PDF
+        with open(pdf_path, "rb") as pdf_file:
+            pdf_b64 = base64.b64encode(pdf_file.read()).decode('utf-8')
+        
+        return FinalGenerationResponse(
+            latex_str=final_latex_content,
+            pdf_b64=pdf_b64
+        )
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error in generate_enhanced_latex: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 # --- Root Endpoint for Health Check ---
 @app.get("/")
 def read_root():
-    return {"message": "Resume Generator API is running."}
+    return {"status": "ok"}
 
 if __name__ == "__main__":
     import uvicorn
