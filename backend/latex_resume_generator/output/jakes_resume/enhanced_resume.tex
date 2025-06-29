@@ -1,0 +1,254 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage{textgreek}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\Huge \scshape Parth Sharma} \\ \vspace{1pt}
+    \small \href{tel:9971361784}{\textcolor{blue}{\underline{9971361784}}} $|$ \href{mailto:parthshr370@gmail.com}{\textcolor{blue}{\underline{parthshr370@gmail.com}}} $|$
+    \href{https://www.linkedin.com/in/parthshr370/}{\textcolor{blue}{\underline{LinkedIn}}} $|$
+    \href{https://twitter.com/parthshr370/}{\textcolor{blue}{\underline{Twitter}}} $|$
+    \href{https://github.com/parthshr370/}{\textcolor{blue}{\underline{Github}}}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+\small{Highly motivated Agentic AI Engineer specializing in multi-agent system orchestration and LLM fine-tuning. Proficient in \textbf{LangChain}, \textbf{LangGraph}, and \textbf{CAMEL-AI}, with a focus on developing scalable AI solutions and automating complex workflows. Passionate about leveraging large language models for intelligent automation and contributing to the open-source AI community.}
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {AI Engineer Intern}{Feb 2025 -- Apr 2025}
+      {ESDS Limited}{Nashik, India}
+      \resumeItemListStart
+        \resumeItem{Developed a multi-agent HR system using \textbf{LangChain} for OCR-based resume extraction, intelligent semantic matching, and dynamic interview question generation, streamlining the recruitment process.}
+        \resumeItem{Architected EnTAL, an end-to-end recruitment automation system automating job description generation, LinkedIn posting, ATS candidate shortlisting, OA test creation/distribution, submission evaluation, and personalized interview question creation.}
+        \resumeItem{Orchestrated real-time workflows, dynamic routing, and modular agent integration using \textbf{LangGraph}, resulting in a 35\% reduction in candidate processing time.}
+        \resumeItem{Ensured scalability and security by containerizing microservices with \textbf{Docker}, implementing secure API endpoints, encryption, and rate limiting.}
+        \resumeItem{Implemented feedback loops to refine interview questions based on historical candidate data, enhancing matching accuracy by 27\%.}
+        \resumeItem{Technologies Used: \textbf{LangChain}, \textbf{LangGraph}, MongoDB, Docker, Python, RESTful APIs}
+        \resumeItem{\textbf{Key Achievements}:}
+        \resumeItem{Reduced candidate processing time by 35\% using \textbf{LangGraph} for workflow orchestration.}
+        \resumeItem{Improved candidate matching accuracy by 27\% by implementing feedback loops for interview question refinement.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Research Intern}{May 2024 -- Jul 2024}
+      {Indian Institute of Information Technology Allahabad}{Allahabad, India}
+      \resumeItemListStart
+        \resumeItem{Developed a novel fusion model integrating \textbf{LSTM} and \textbf{CNN} to enhance process prediction, achieving a 40\% reduction in training time while maintaining accuracy.}
+        \resumeItem{Significantly increased prediction accuracy and reduced training time compared to standard process modeling approaches using the developed fusion model.}
+        \resumeItem{Fine-tuned LLMs for process modeling using \textbf{POWL} and \textbf{PM4PY} frameworks, optimizing performance for specific process-related tasks.}
+        \resumeItem{Improved the PromoAI Framework for process modeling on large-scale databases, enhancing anomaly detection accuracy by 22\%.}
+        \resumeItem{Technologies Used: \textbf{PyTorch}, \textbf{Langchain}, \textbf{PM4PY}, Pandas, \textbf{POWL}}
+        \resumeItem{\textbf{Key Achievements}:}
+        \resumeItem{Reduced training time by 40\% with the \textbf{LSTM}-\textbf{CNN} fusion model.}
+        \resumeItem{Increased anomaly detection accuracy by 22\% in the PromoAI Framework.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+
+\resumeSubHeadingListStart
+
+
+\resumeProjectHeading
+    {\textbf{EnTAL AI Hiring Platform} $|$ \emph{ESDS Limited}}{}
+    \resumeItemListStart
+        \resumeItem{Developed a distributed multi-agent HR system for automated resume extraction, semantic candidate matching, and dynamic interview question generation.}
+        \resumeItem{Architected a multi-agent system where each agent is a self-contained \textbf{LangChain} chain, responsible for specialized tasks within the HR workflow.}
+        \resumeItem{Implemented a candidate matching agent combining semantic embeddings, rule-based keyword extraction, and configurable weighted scoring to ensure high-accuracy candidate ranking.}
+        \resumeItem{Utilized \textbf{LangGraph} to orchestrate agent workflows, enabling real-time visualization, dynamic routing, and on-the-fly adjustments between independent modules, improving overall workflow efficiency.}
+        \resumeItem{Integrated asynchronous communication via RESTful APIs (using \textbf{Flask}/\textbf{FastAPI}) to decouple agents, improve fault tolerance, and optimize processing efficiency.}
+        \resumeItem{Established feedback loops within the interview generation agent to refine questions based on historical candidate data and performance insights, leading to more relevant and effective interview sessions.}
+        \resumeItem{Containerized the solution using \textbf{Docker} for scalability and security, implementing secure API endpoints, encryption, and rate limiting to protect sensitive data.}
+        \resumeItem{\textbf{Technologies}: \textbf{LangChain}, \textbf{LangGraph}, MongoDB, \textbf{Flask}/\textbf{FastAPI}, \textbf{Docker}, Python, RESTful APIs, OCR}
+        \resumeItem{\textbf{Impact}:}
+        \resumeItem{Streamlined the HR recruitment process by automating key tasks.}
+        \resumeItem{Enhanced the personalization and relevance of interview sessions.}
+    \resumeItemListEnd
+
+\resumeProjectHeading
+    {\textbf{MCP-Servers} $|$ \emph{Open Source Contribution}}{}
+    \resumeItemListStart
+        \resumeItem{Developed custom Message Control Protocol (MCP) servers for enabling AI agents to interact with external systems in the \textbf{CAMEL-AI} framework.}
+        \resumeItem{Designed and implemented filesystem, SQL database, and Google Forms interface servers with comprehensive APIs for agent interaction.}
+        \resumeItem{Implemented robust error handling, authentication flows, and interactive testing utilities to ensure server reliability and security.}
+        \resumeItem{Developed extensive testing suites with \textbf{pytest} to validate server functionality and ensure adherence to coding standards.}
+        \resumeItem{Designed reusable server patterns and components to accelerate the integration of new functionalities within the \textbf{CAMEL-AI} ecosystem.}
+        \resumeItem{Contributed to the \textbf{CAMEL-AI} open-source project, enhancing its capabilities for agent-environment interaction.}
+        \resumeItem{\textbf{Technologies}: Python, \textbf{CAMEL-AI}, FastMCP, SQLite, Google API, \textbf{Pytest}, RESTful APIs}
+        \resumeItem{\textbf{Impact}:}
+        \resumeItem{Expanded the capabilities of the \textbf{CAMEL-AI} framework.}
+        \resumeItem{Provided reusable server components for future agent integrations.}
+    \resumeItemListEnd
+
+
+    \resumeProjectHeading
+        {\textbf{In-Run Data Shapley} $|$ \emph{Research Project}}{}
+        \resumeItemListStart
+            \resumeItem{Developed a method to compute a Shapley-like contribution score for each training sample during model training to identify influential data points.}
+            \resumeItem{Implemented combined training and validation gradient computation within a single forward pass to assess the influence of each training sample on validation loss.}
+            \resumeItem{Utilized first-order approximations through per-sample gradient dot-products to measure the impact of training samples on validation example’s loss.}
+            \resumeItem{Conducted multiple backward passes to demonstrate a naive implementation and discussed potential optimizations using forward/backward hooks for efficiency.}
+            \resumeItem{Analyzed and visualized training data influence, facilitating data cleaning by identifying potentially mislabeled or harmful samples.}
+            \resumeItem{Developed visualizations using \textbf{Matplotlib} to present the contribution scores and highlight key data points.}
+            \resumeItem{\textbf{Technologies}: \textbf{PyTorch}, Librosa, NumPy, \textbf{Matplotlib}, Python}
+            \resumeItem{\textbf{Impact}:}
+            \resumeItem{Enabled identification of influential data points during model training.}
+            \resumeItem{Facilitated data cleaning by pinpointing potentially mislabeled or harmful samples.}
+        \resumeItemListEnd
+
+
+    \resumeProjectHeading
+        {\textbf{Events as Pixels} $|$ \emph{Supervisor: O.P. Vyas, IIITA}}{}
+        \resumeItemListStart
+            \resumeItem{Developed a deep learning model (Fusion Model Architecture - FMA) for predictive process monitoring by combining \textbf{LSTM} and \textbf{CNN} to capture temporal and spatial patterns.}
+            \resumeItem{Designed and implemented a Fusion Model Architecture (FMA) combining \textbf{LSTM} and \textbf{CNN} to capture both temporal and spatial patterns in event logs.}
+            \resumeItem{Visualized traces of event logs as 2D matrices to identify unique spatial patterns missed by traditional temporal methods, enhancing pattern recognition.}
+            \resumeItem{Achieved superior accuracy in predicting the next event and minimal error in timestamp prediction compared to conventional process monitoring techniques.}
+            \resumeItem{Utilized \textbf{PM4PY} for process mining and event log analysis, providing a robust foundation for the deep learning model.}
+            \resumeItem{Experimented with different \textbf{CNN} and \textbf{LSTM} configurations to optimize the FMA for specific process monitoring tasks.}
+            \resumeItem{\textbf{Technologies}: \textbf{PM4PY}, \textbf{Keras}, \textbf{TensorFlow}, Pandas, Python, \textbf{LSTM}, \textbf{CNN}}
+            \resumeItem{\textbf{Impact}:}
+            \resumeItem{Improved accuracy in predicting the next event in process logs.}
+            \resumeItem{Reduced error in timestamp prediction.}
+        \resumeItemListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Manipal University Jaipur}{Jaipur}
+      {Bachelor of Technology in Data Science}{Sep 2022 -- Present}
+    \resumeSubheading
+      {Blue Bells Public School}{Gurugram}
+      {CBSE}{Apr 2007 -- May 2022}
+  \resumeSubHeadingListEnd
+%
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{LLM \& AI Frameworks}{: \textbf{LangChain}, \textbf{LangGraph}, \textbf{CAMEL-AI}, RAG, Hugging Face Transformers} \\
+     \textbf{Deep Learning}{: \textbf{PyTorch}, \textbf{TensorFlow}, \textbf{Keras}, \textbf{LSTM}, \textbf{CNN}} \\
+     \textbf{Data Processing \& Analysis}{: Pandas, NumPy, \textbf{Matplotlib}, \textbf{PM4PY}, Librosa, Signal Processing, Vector Databases} \\
+     \textbf{Languages}{: Python, Java, SQL, HTML/CSS, C} \\
+     \textbf{Developer Tools \& Infrastructure}{: Git, \textbf{Docker}, Linux, \textbf{LaTeX}, GitHub, \textbf{FastAPI}, \textbf{Flask}, RESTful APIs} \\
+     \textbf{AI/ML Techniques}{: Multi-agent Systems, MCP, Fine-tuning, Prompt Engineering, Semantic Embeddings, Process Mining, Anomaly Detection} \\
+     \textbf{Mathematics \& Statistics}{: Stochastic Modeling, Linear Algebra, Calculus, Advanced Statistics, Optimization} \\
+     \textbf{Research \& Documentation}{: Research Methodology, Technical Writing, Project Documentation, Blogging}
+    }}
+ \end{itemize}
+%-------------------------------------------
+
+%-------------------------------------------
+\end{document}

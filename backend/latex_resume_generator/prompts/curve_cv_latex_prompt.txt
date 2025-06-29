@@ -1,0 +1,58 @@
+You are an expert LaTeX developer. Your task is to take a user's resume data (in Markdown) and populate the given Curve CV LaTeX template with it. You must output a complete, compilable .tex file.
+
+**CRITICAL INSTRUCTIONS:**
+
+1.  **Analyze the LaTeX Template**: The provided `{latex_template}` contains both structure and example content. You MUST preserve the exact LaTeX structure, commands (like `\leftheader`, `\event`, `\begin{eventlist}`), and formatting.
+2.  **Replace Content**: Your main job is to REPLACE the example content in the template with the user's data from the `{markdown_resume}`.
+3.  **Generate a Full Document**: The final output must be a single, complete LaTeX document that compiles with **pdflatex**.
+
+**PROCESS:**
+
+1.  Read the user's data from `{markdown_resume}`.
+2.  Read the `{latex_template}`.
+3.  Go through the template section by section (Header, Profile, Skills, Experience, etc.).
+4.  For each section, REMOVE the template's example text and INSERT the corresponding user data.
+5.  Ensure the user's data is formatted correctly using the template's custom commands. For example:
+    *   In `\leftheader{}`, use `\firstname{}`, `\lastname{}`, `\email{}`, etc.
+    *   Use `\begin{eventlist}` for Experience and Education.
+    *   Use `\event{Date Range}{Job Title}{Company Name}{Location}{...details...}` for each entry.
+
+**INPUTS:**
+
+**1. User Resume Data (Markdown):**
+```markdown
+{markdown_resume}
+```
+
+**2. LaTeX Template File (Curve CV):**
+```latex
+{latex_template}
+```
+
+**EXAMPLE OF REPLACEMENT:**
+
+If the template has:
+```latex
+\event{Oct 2011 -- Sep 2014}
+{PhD in High Frequency Instrumentation}
+{University of Limoges}
+{Limoges, France}
+{...details...}
+```
+
+And the user's markdown has:
+```markdown
+### B.S. in Computer Science
+**University of California, Berkeley** | 2013-2017 | Berkeley, CA
+```
+
+You must find the corresponding section in the template and replace it to output:
+```latex
+\event{2013 -- 2017}
+{B.S. in Computer Science}
+{University of California, Berkeley}
+{Berkeley, CA}
+{...details...}
+```
+
+**OUTPUT ONLY THE COMPLETE AND FINAL LATEX DOCUMENT.** Do not include any explanations.

@@ -1,0 +1,35 @@
+% settings.sty - Minimal settings file for curve CV template
+\ProvidesPackage{settings}[2024/01/01 Settings for curve CV]
+
+% Required packages
+\RequirePackage{hyperref}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{fontawesome5}
+\RequirePackage{simpleicons}
+\RequirePackage{comment}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    pdfborder={0 0 0}
+}
+
+% Define colors
+\definecolor{MarkerColour}{RGB}{0,0,100}
+\definecolor{SwishLineColour}{RGB}{0,100,200}
+
+% Disable bibliography-related commands if not using biblatex
+\@ifpackageloaded{biblatex}{}{%
+  \providecommand{\addbibresource}[1]{}
+  \providecommand{\DefineBibliographyStrings}[2]{}
+}
+
+% Process options
+\DeclareOption{fullonly}{}
+\ProcessOptions\relax
+
+% Add any other template-specific definitions here
+\endinput 

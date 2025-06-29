@@ -1,0 +1,152 @@
+%%%%%%%%%%%%%%%
+% This CV example/template is based on my own
+% CV which I (lamely attempted) to clean up, so that
+% it's less of an eyesore and easier for others to use.
+%
+% LianTze Lim (liantze@gmail.com)
+% 23 Oct, 2022
+% 24 Aug, 2024 -- Updated X (Twitter) icon
+\documentclass[a4paper,11pt,english]{curve}
+
+% Uncomment to enable Chinese; needs XeLaTeX
+% \usepackage{ctex}
+
+
+% Default biblatex style used for the publication list is APA6. If you wish to use a different style or pass other options to biblatex you can change them here.
+\PassOptionsToPackage{style=ieee,sorting=ydnt,uniquename=init,defernumbers=true}{biblatex}
+
+% Most commands and style definitions are in settings.sty.
+\usepackage{settings}
+
+% If you need to further customise your biblatex setup e.g. with \DeclareFieldFormat etc please add them here AFTER loading settings.sty. For example, to remove the default "[Online] Available:" prefix before URLs when using the IEEE style:
+\DefineBibliographyStrings{english}{url={\textsc{url}}}
+
+%% Only needed if you want a Publication List
+\addbibresource{own-bib.bib}
+
+%% Specify your last name(s) and first name(s) (as given in the .bib) to automatically bold your own name in the publications list.
+%% One caveat: You need to write \bibnamedelima where there's a space in your name for this to work properly; or write \bibnamedelimi if you use initials in the .bib
+% \mynames{Lim/Lian\bibnamedelima Tze}
+
+%% You can specify multiple names like this, especially if you have changed your name or if you need to highlight multiple authors. See items 6–9 in the example "Journal Articles" output.
+\mynames{Lim/Lian\bibnamedelima Tze,
+  Wong/Lian\bibnamedelima Tze,
+  Lim/Tracy,
+  Lim/L.\bibnamedelimi T.}
+%% MAKE SURE THERE IS NO SPACE AFTER THE FINAL NAME IN YOUR \mynames LIST
+
+% Change the fonts if you want
+\ifxetexorluatex % If you're using XeLaTeX or LuaLaTeX
+  \usepackage{fontspec}
+  \setmainfont{DejaVu Serif}
+  \setsansfont{DejaVu Sans}
+  \setmonofont{DejaVu Sans Mono}
+\else % If you're using pdfLaTeX or latex
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+
+% Change the page margins if you want
+% \geometry{left=1cm,right=1cm,top=1.5cm,bottom=1.5cm}
+
+% Change the colours if you want
+% \definecolor{SwishLineColour}{HTML}{00FFFF}
+% \definecolor{MarkerColour}{HTML}{0000CC}
+
+% Change the item prefix marker if you want
+% \prefixmarker{$\diamond$}
+
+%% Photo is only shown if "fullonly" is included
+\includecomment{fullonly}
+% \excludecomment{fullonly}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\leftheader{%
+  {\LARGE\bfseries\sffamily John Doe}
+
+  \makefield{\faEnvelope[regular]}{\href{mailto:john.doe@email.com}{\texttt{john.doe@email.com}}}
+  \makefield{\faPhone}{123-456-7890}
+  \makefield{\faLinkedin}
+  {\href{https://linkedin.com/in/johndoe}{\texttt{linkedin.com/in/johndoe}}}
+  \makefield{\faGithub}{\href{https://github.com/johndoe}{\texttt{github.com/johndoe}}}
+}
+
+\rightheader{~}
+\begin{fullonly}
+\photo[r]{photo}
+\photoscale{0.13}
+\end{fullonly}
+
+\title{Curriculum Vitae}
+
+\begin{document}
+\makeheaders[c]
+
+\begin{rubric}{Experience}
+\begin{eventlist}
+\event{Jan 2020 -- Present}
+{Senior Software Engineer}
+{Tech Solutions Inc.}
+{San Francisco, CA}
+{Led the development and maintenance of key features for a high-traffic web application. Spearheaded performance optimization efforts, resulting in significant improvements in response times. Collaborated with cross-functional teams to define technical requirements and ensure seamless integration of new features. Mentored junior engineers, providing guidance on best practices and code quality.
+
+\textbf{Technologies Used}: JavaScript, React, Node.js, Python, AWS, Docker, Kubernetes
+
+- Reduced average API response time by 40\% through code profiling and optimization techniques.
+- Successfully migrated a critical service to AWS, resulting in a 25\% reduction in infrastructure costs.
+- Implemented a new caching strategy that decreased database load by 30\%.}
+\event{}
+{Personal Portfolio Website}
+{}
+{}
+{Developed a personal portfolio website to showcase projects and skills.
+
+- Designed and implemented a responsive website using React and modern JavaScript techniques.
+- Utilized serverless functions on Netlify to handle contact form submissions.
+- Implemented a CI/CD pipeline with GitHub Actions for automated deployments.
+- Focused on clean code and maintainability, adhering to industry best practices.
+
+\textbf{Technologies}: React, JavaScript, HTML, CSS, Netlify, GitHub Actions}
+\event{}
+{Data Pipeline for E-commerce Analytics}
+{}
+{}
+{Built a data pipeline to collect, process, and analyze e-commerce data for generating business insights.
+
+- Designed a scalable data pipeline using Python, Apache Kafka, and Apache Spark.
+- Implemented data ingestion from various sources, including website clickstream data and transactional databases.
+- Developed data transformation and cleaning processes to ensure data quality.
+- Created data visualizations and dashboards using Tableau to present key performance indicators (KPIs).
+
+\textbf{Technologies}: Python, Apache Kafka, Apache Spark, SQL, Tableau, AWS S3
+
+\textbf{Impact:} Enabled data-driven decision-making by providing timely and accurate business insights.
+\textbf{Impact:} Identified key areas for improvement in marketing and sales strategies.}
+\end{eventlist}
+\end{rubric}
+
+\begin{rubric}{Education}
+\begin{eventlist}
+\event{2013 -- 2017}
+{B.S. in Computer Science}
+{UC Berkeley}
+{Berkeley, CA}
+{GPA: 3.8
+Relevant Coursework: Data Structures and Algorithms, Operating Systems, Database Systems, Software Engineering, Artificial Intelligence}
+\end{eventlist}
+\end{rubric}
+
+\begin{rubric}{Skills}
+\textbf{Languages \& Frameworks}: JavaScript, Python, React, Node.js, HTML, CSS, SQL
+
+\textbf{Cloud \& Infrastructure}: AWS, Docker, Kubernetes, Terraform, Serverless Architecture
+
+\textbf{Data Processing \& Analysis}: Apache Kafka, Apache Spark, Tableau, Data Visualization, Data Warehousing
+
+\textbf{Developer Tools}: Git, GitHub Actions, CI/CD, Jira, Confluence
+\end{rubric}
+
+\end{document}

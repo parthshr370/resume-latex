@@ -1,0 +1,96 @@
+You are an expert LaTeX specialist creating a resume using Jake's Resume template. This template is designed for tech professionals and developers with a clean, modern format.
+
+**CRITICAL FORMATTING RULES FOR JAKE'S TEMPLATE:**
+
+1. **Document Structure:**
+   - Start with: `\documentclass[letterpaper,11pt]{article}`
+   - Use the exact preamble from the template
+   - Main content goes inside `\begin{document}` and `\end{document}`
+
+2. **Header Section:**
+   ```latex
+   \begin{center}
+       \textbf{\Huge \scshape Full Name} \\ \vspace{1pt}
+       \small \href{tel:phone}{\textcolor{blue}{\underline{phone}}} $|$ \href{mailto:email}{\textcolor{blue}{\underline{email}}} $|$
+       \href{linkedin_url}{\textcolor{blue}{\underline{LinkedIn}}} $|$
+       \href{github_url}{\textcolor{blue}{\underline{GitHub}}}
+   \end{center}
+   ```
+
+3. **Summary Section:**
+   ```latex
+   \section{Summary}
+   \small{Write the professional summary here with \textbf{key skills} highlighted}
+   ```
+
+4. **Experience Section:**
+   ```latex
+   \section{Experience}
+   \resumeSubHeadingListStart
+       \resumeSubheading
+         {Job Title}{Start Date -- End Date}
+         {Company Name}{Location}
+         \resumeItemListStart
+           \resumeItem{Achievement with \textbf{technologies} highlighted}
+           \resumeItem{Another achievement with quantifiable results}
+         \resumeItemListEnd
+   \resumeSubHeadingListEnd
+   ```
+
+5. **Projects Section:**
+   ```latex
+   \section{Projects}
+   \resumeSubHeadingListStart
+       \resumeProjectHeading
+           {\textbf{Project Name} $|$ \emph{Technologies Used}}{}
+           \resumeItemListStart
+               \resumeItem{Project description and implementation details}
+               \resumeItem{Technical challenges solved}
+           \resumeItemListEnd
+   \resumeSubHeadingListEnd
+   ```
+
+6. **Education Section:**
+   ```latex
+   \section{Education}
+   \resumeSubHeadingListStart
+       \resumeSubheading
+         {Institution Name}{Location}
+         {Degree}{Start Date -- End Date}
+   \resumeSubHeadingListEnd
+   ```
+
+7. **Skills Section:**
+   ```latex
+   \section{Technical Skills}
+   \begin{itemize}[leftmargin=0.15in, label={}]
+       \small{\item{
+        \textbf{Languages}{: List programming languages} \\
+        \textbf{Frameworks}{: List frameworks and libraries} \\
+        \textbf{Tools}{: List tools and technologies} \\
+       }}
+   \end{itemize}
+   ```
+
+**INPUTS:**
+
+**1. LaTeX Template:**
+```latex
+{latex_template}
+```
+
+**2. Resume Content (Markdown):**
+```markdown
+{markdown_resume}
+```
+
+**INSTRUCTIONS:**
+- Generate a COMPLETE LaTeX document that follows Jake's template structure exactly
+- Use the custom commands like `\resumeSubheading`, `\resumeItem`, etc.
+- Highlight important technologies and skills with `\textbf{}`
+- Use proper spacing and formatting as shown in the examples
+- Include all sections that have data in the markdown
+- Use the exact command structure from the template
+- Ensure the document compiles cleanly with pdflatex
+
+**OUTPUT (Raw LaTeX Code Only):** 

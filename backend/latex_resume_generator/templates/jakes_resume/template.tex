@@ -1,0 +1,239 @@
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage{textgreek}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\Huge \scshape Parth Sharma} \\ \vspace{1pt}
+    \small \href{tel:9971361784}{\textcolor{blue}{\underline{9971361784}}} $|$ \href{mailto:parthshr370@gmail.com}{\textcolor{blue}{\underline{parthshr370@gmail.com}}} $|$
+    \href{https://www.linkedin.com/in/parthshr370/}{\textcolor{blue}{\underline{LinkedIn}}} $|$
+    \href{https://twitter.com/parthshr370/}{\textcolor{blue}{\underline{Twitter}}} $|$
+    \href{https://github.com/parthshr370/}{\textcolor{blue}{\underline{Github}}}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+\small{Agentic AI Engineer with expertise in orchestrating multi-agent systems using \textbf{LangChain} and \textbf{LangGraph}. \textbf{CAMEL-AI} contributor specializing in building and implementing MCP servers for agent-environment interactions. Focused on agentic orchestration, workflow design, and creating scalable AI solutions through containerization. Regularly write technical blogs at \href{https://medium.com/@parthshr370}{\textcolor{blue}{\underline{Medium}}}. Passionate about developing intelligent automation systems that leverage the full potential of large language models.}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Manipal University Jaipur}{Jaipur}
+      {Bachelor of Technology in Data Science}{Sep 2022 - Present}
+    \resumeSubheading
+      {Blue Bells Public School}{Gurugram}
+      {CBSE}{Apr 2007 - May 2022}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {AI Engineer Intern}{Feb 2025 - Apr 2025}
+      {ESDS Limited}{Nashik, India}
+      \resumeItemListStart
+        \resumeItem{Created a multi-agent HR system using \textbf{LangChain} framework for OCR-based resume extraction, intelligent semantic matching, and dynamic interview question generation based on candidate profiles and job requirements.}
+        \resumeItem{Developed \textbf{EnTAL}, an end-to-end recruitment automation system that generates job descriptions, posts to LinkedIn, performs ATS-based candidate shortlisting, automates OA test creation and distribution, evaluates submissions, and creates personalized interview questions based on resume analysis and assessment performance.}
+        \resumeItem{Utilized \textbf{LangGraph} for real-time workflow orchestration, dynamic routing, and modular agent integration, reducing candidate processing time by 35\%.}
+        \resumeItem{Architected the solution for scalability and security by containerizing microservices with \textbf{Docker}, implementing secure API endpoints, encryption, and rate limiting.}
+        \resumeItem{Added feedback loops to refine interview questions based on historical candidate data, improving matching accuracy by 27\%.}
+        \resumeItem{Tech Stack - \textit{\textbf{LangChain}, \textbf{LangGraph}, MongoDB, Docker, Python}}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Research Intern}{May 2024 - Jul 2024}
+      {Indian Institute of Information Technology Allahabad}{Allahabad, India}
+      \resumeItemListStart
+        \resumeItem{Developed a fusion model to improve Process Prediction using \textbf{LSTM} and \textbf{CNN}, reducing training time by 40\% while maintaining accuracy.}
+        \resumeItem{The fusion model significantly increased the accuracy along with less training time compared to standard approaches.}
+        \resumeItem{Worked on Fine-tuning LLMs for process modeling using \textbf{POWL} and \textbf{PM4PY}.}
+        \resumeItem{Improved the PromoAI Framework of process modeling for large scale databases and detect anomalies in them, increasing detection accuracy by 22\%.}
+        \resumeItem{Tech Stack - \textit{\textbf{PyTorch}, \textbf{Langchain}, PM4PY, Pandas}}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+
+\resumeSubHeadingListStart
+
+
+\resumeProjectHeading
+    {\textbf{EnTAL AI Hiring Platform} $|$ \emph{ESDS Limited}}{}
+    \resumeItemListStart
+        \resumeItem{Developed a distributed multi-agent HR system where each agent—built as a self-contained \textbf{LangChain} chain—handles specialized tasks such as OCR-based resume extraction, semantic candidate matching, and dynamic interview question generation.}
+        \resumeItem{Created a multi-agent workflow that outputted custom interview questions generated directly from the candidate's resume, enhancing the personalization and relevance of interview sessions.}
+        \resumeItem{Employed \textbf{LangGraph} to orchestrate agent workflows, enabling real-time visualization, dynamic routing, and on-the-fly adjustments between independent modules.}
+        \resumeItem{Designed the candidate matching agent to combine semantic embeddings, rule-based keyword extraction, and configurable weighted scoring, ensuring high-accuracy candidate ranking.}
+        \resumeItem{Integrated asynchronous communication via RESTful APIs (using \textbf{Flask/FastAPI}) to decouple agents, improve fault tolerance, and optimize processing efficiency.}
+        \resumeItem{Established feedback loops within the interview generation agent to refine questions based on historical candidate data and performance insights.}
+        \resumeItem{Architected the solution for scalability and security by containerizing microservices with \textbf{Docker}, implementing secure API endpoints, encryption, and rate limiting.}
+        \resumeItem{Tools: \textit{\textbf{LangChain}, \textbf{LangGraph}, MongoDB, Flask/FastAPI, Docker}.}
+    \resumeItemListEnd
+
+\resumeProjectHeading
+    {\textbf{MCP-Servers} $|$ \emph{CAMEL-AI Contribution}}{}
+    \resumeItemListStart
+        \resumeItem{Developed a collection of custom Message Control Protocol (MCP) servers for various use cases, enabling AI agents to interact with external systems.}
+        \resumeItem{Created filesystem, SQL database, and Google Forms interface servers with comprehensive APIs.}
+        \resumeItem{Implemented robust error handling, authentication flows, and interactive testing utilities.}
+        \resumeItem{Wrote extensive testing suites with \textbf{pytest} to ensure server reliability and functionality.}
+        \resumeItem{Designed reusable server patterns and components to accelerate integration of new functionalities.}
+        \resumeItem{Tech Stack: \textit{Python, CAMEL-AI, FastMCP, SQLite, Google API, Pytest}}
+    \resumeItemListEnd
+
+
+    \resumeProjectHeading
+        {\textbf{In-Run Data Shapley} $|$ \emph{Research Project}}{}
+        \resumeItemListStart
+            \resumeItem{Developed a method to compute a Shapley-like contribution score for each training sample with respect to a single validation sample during training on the MNIST dataset.}
+            \resumeItem{Implemented combined training and validation gradient computation within a single forward pass to assess the influence of each training sample on validation loss.}
+            \resumeItem{Utilized first-order approximations through per-sample gradient dot-products to measure the impact of training samples on validation example's loss.}
+            \resumeItem{Conducted multiple backward passes to demonstrate a naive implementation and discussed potential optimizations using forward/backward hooks for efficiency.}
+            \resumeItem{Analyzed and visualized training data influence, facilitating data cleaning by identifying potentially mislabeled or harmful samples.}
+            \resumeItem{Tools: \textit{\textbf{PyTorch}, Librosa, NumPy, Matplotlib}.}
+        \resumeItemListEnd
+
+
+    \resumeProjectHeading
+        {\textbf{Events as Pixels} $|$ \emph{Supervisor: O.P. Vyas, IIITA}}{}
+        \resumeItemListStart
+            \resumeItem{Developed a deep learning model (Fusion Model Architecture - FMA) for predictive process monitoring.}
+            \resumeItem{FMA combines \textbf{LSTM} and \textbf{CNN} to capture both temporal and spatial patterns in an event log.}
+            \resumeItem{Visualized traces of event logs to a 2D matrix to find unique spatial patterns missed by the temporal methods.}
+            \resumeItem{Achieved superior accuracy in predicting the next event and minimal error in timestamp prediction.}
+            \resumeItem{Tools: \textit{PM4PY, \textbf{Keras}, \textbf{TensorFlow}, Pandas}}
+        \resumeItemListEnd
+
+%
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{LLM \& AI Frameworks}{: CAMEL-AI, LangChain, LangGraph, RAG, PyTorch, TensorFlow, Keras, Hugging Face} \\
+     \textbf{Data Processing \& Analysis}{: Pandas, NumPy, Matplotlib, PM4PY, Librosa, Signal Processing, Vector Databases} \\
+     \textbf{Languages}{: Python, Java, SQL, HTML/CSS, C} \\
+     \textbf{Developer Tools}{: Git, Docker, Linux, LaTeX, GitHub, FastAPI, Flask} \\
+     \textbf{AI/ML Techniques}{: Multi-agent Systems, MCP ,Fine-tuning, Prompt Engineering, Semantic Embeddings} \\
+     \textbf{Mathematics}{: Stochastic Modeling, Linear Algebra, Calculus, Advanced Statistics, Optimization} \\
+     \textbf{Research and Documentation}{: Research Methodology, Technical Writing, Project Documentation, Blogging}
+    }}
+ \end{itemize}
+%-------------------------------------------
+
+%-------------------------------------------
+\end{document}

@@ -1,0 +1,54 @@
+You are an expert LaTeX developer. Your task is to take a user's resume data (in Markdown) and populate the given Deedy CV LaTeX template with it. You must output a complete, compilable .tex file.
+
+**CRITICAL INSTRUCTIONS:**
+
+1.  **Analyze the LaTeX Template**: The provided `{latex_template}` contains both structure and example content. You MUST preserve the exact LaTeX structure, commands (like `\runsubsection`, `\descript`, `\location`, `\begin{tightemize}`), and the two-column `minipage` layout.
+2.  **Replace Content**: Your main job is to REPLACE the example content in the template with the user's data from the `{markdown_resume}`. Do not simply append the user's data.
+3.  **Generate a Full Document**: The final output must be a single, complete LaTeX document that compiles with **xelatex**.
+
+**PROCESS:**
+
+1.  Read the user's data from `{markdown_resume}`.
+2.  Read the `{latex_template}`.
+3.  Go through the template section by section, paying close attention to the two-column layout.
+4.  For each section, REMOVE the template's example text and INSERT the corresponding user data.
+5.  Ensure the user's data is formatted correctly using the template's custom commands. For example:
+    *   `\namesection{John}{Doe}{...}`
+    *   `\runsubsection{Company Name}`
+    *   `\descript{| Job Title}`
+    *   `\location{Date Range | Location}`
+    *   `\begin{tightemize}` for bullet points.
+
+**INPUTS:**
+
+**1. User Resume Data (Markdown):**
+```markdown
+{markdown_resume}
+```
+
+**2. LaTeX Template File (Deedy CV):**
+```latex
+{latex_template}
+```
+
+**EXAMPLE OF REPLACEMENT:**
+
+If the template has:
+```latex
+\runsubsection{Awesome Company}
+\descript{| Boss}
+```
+
+And the user's markdown has:
+```markdown
+### Senior Software Engineer
+**Tech Solutions Inc.**
+```
+
+You must find the corresponding section in the template and replace it to output:
+```latex
+\runsubsection{Tech Solutions Inc.}
+\descript{| Senior Software Engineer}
+```
+
+**OUTPUT ONLY THE COMPLETE AND FINAL LATEX DOCUMENT.** Do not include any explanations.

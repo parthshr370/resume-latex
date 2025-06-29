@@ -1,0 +1,264 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deedy - One Page Two Column Resume
+% LaTeX Template
+% Version 1.2 (16/9/2014)
+%
+% Original author:
+% Debarghya Das (http://debarghyadas.com)
+%
+% Original repository:
+% https://github.com/deedydas/Deedy-Resume
+%
+% IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+%
+% This template uses several fonts not included with Windows/Linux by
+% default. If you get compilation errors saying a font is missing, find the line
+% on which the font is used and either change it to a font included with your
+% operating system or comment the line out to use the default font.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% TODO:
+% 1. Integrate biber/bibtex for article citation under publications.
+% 2. Figure out a smoother way for the document to flow onto the next page.
+% 3. Add styling information for a "Projects/Hacks" section.
+% 4. Add location/address information
+% 5. Merge OpenFont and MacFonts as a single sty with options.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CHANGELOG:
+% v1.1:
+% 1. Fixed several compilation bugs with \renewcommand
+% 2. Got Open-source fonts (Windows/Linux support)
+% 3. Added Last Updated
+% 4. Move Title styling into .sty
+% 5. Commented .sty file.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Known Issues:
+% 1. Overflows onto second page if any column's contents are more than the
+% vertical limit
+% 2. Hacky space on the first bullet point on the second column.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[]{deedy-resume-openfont}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     LAST UPDATED DATE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lastupdated
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     TITLE NAME
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\namesection{John}{Doe}{\urlstyle{same}\href{https://linkedin.com/in/johndoe}{LinkedIn} | \href{https://github.com/johndoe}{GitHub} \\
+\href{mailto:john.doe@email.com}{john.doe@email.com} | 123-456-7890 | San Francisco, CA
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COLUMN ONE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{minipage}[t]{0.33\textwidth} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     EDUCATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Education} 
+
+\subsection{University of California, Berkeley}
+\descript{B.S. in Computer Science}
+\location{2013 - 2017}
+\location{GPA: 3.8}
+\location{Relevant Coursework: Data Structures and Algorithms, Operating Systems, Database Systems, Software Engineering, Machine Learning}
+\location{Achievements: Dean's List (all semesters), Graduated Cum Laude}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     LINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{Links} 
+%Facebook:// \href{https://facebook/dd}{\bf dd} \\
+%Github:// \href{https://github.com/deedydas}{\bf deedydas} \\
+%LinkedIn://  \href{https://www.linkedin.com/in/debarghyadas}{\bf debarghyadas} \\
+%YouTube://  \href{https://www.youtube.com/user/DeedyDash007}{\bf DeedyDash007} \\
+%Twitter://  \href{https://twitter.com/debarghya_das}{\bf @debarghya\_das} \\
+%Quora://  \href{https://www.quora.com/Debarghya-Das}{\bf Debarghya-Das}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     COURSEWORK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{Coursework}
+%\subsection{Graduate}
+%Advanced Machine Learning \\
+%Open Source Software Engineering \\
+%Advanced Interactive Graphics \\
+%Compilers + Practicum \\
+%Cloud Computing \\
+%Evolutionary Computation \\
+%Defending Computer Networks \\
+%Machine Learning \\
+%\sectionsep
+
+%\subsection{Undergraduate}
+%Information Retrieval \\
+%Operating Systems \\
+%Artificial Intelligence + Practicum \\
+%Functional Programming \\
+%Computer Graphics + Practicum \\
+%{\footnotesize \textit{\textbf{(Research Asst. \& Teaching Asst 2x) }}} \\
+%Unix Tools and Scripting \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     SKILLS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Skills}
+\subsection{Programming}
+\location{Languages \& Frameworks:}
+JavaScript \textbullet{} Python \textbullet{} Java \textbullet{} React \textbullet{} Node.js \textbullet{} Django \textbullet{} Spring Boot \\
+\location{Cloud \& Infrastructure:}
+AWS \textbullet{} Docker \textbullet{} Kubernetes \textbullet{} Terraform \textbullet{} CI/CD \textbullet{} Jenkins \\
+\location{Data Management \& Analytics:}
+SQL \textbullet{} PostgreSQL \textbullet{} MongoDB \textbullet{} Redis \textbullet{} Apache Kafka \textbullet{} Apache Spark \textbullet{} Snowflake \\
+\location{Developer Tools:}
+Git \textbullet{} Jira \textbullet{} Confluence \textbullet{} Maven \textbullet{} Gradle
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COLUMN TWO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{minipage} 
+\hfill
+\begin{minipage}[t]{0.66\textwidth} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experience}
+\runsubsection{Tech Solutions Inc.}
+\descript{| Senior Software Engineer}
+\location{Jan 2020 - Present | San Francisco, CA}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\item Led the design and implementation of a microservices architecture to improve system scalability and maintainability.
+\item Spearheaded performance optimization efforts, resulting in a 40\% reduction in average response time.
+\item Mentored junior engineers and provided technical guidance on best practices and design patterns.
+\item Collaborated with product managers and stakeholders to define requirements and translate them into technical specifications.
+\item Participated in code reviews and ensured code quality and adherence to coding standards.
+\item \textbf{Technologies Used}: Java, Spring Boot, Kafka, Docker, Kubernetes, AWS, PostgreSQL
+\item \textbf{Key Achievements}:
+    \begin{itemize}
+        \item Reduced average API response time by 40% through code optimization and caching strategies.
+        \item Successfully migrated a monolithic application to a microservices architecture, improving scalability and resilience.
+        \item Increased team productivity by 20% through the implementation of CI/CD pipelines and automated testing.
+    \end{itemize}
+\end{tightemize}
+\sectionsep
+
+\runsubsection{E-commerce Platform API}
+\descript{| Developed a RESTful API for an e-commerce platform, enabling seamless product browsing, ordering, and payment processing.}
+%\location{June 2014 – Sep 2014 | Mountain View, CA}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\item Designed and implemented a RESTful API using Node.js and Express, adhering to industry best practices for API design and security.
+\item Implemented caching mechanisms using Redis to reduce database load and improve API response times by 30%.
+\item Integrated with third-party payment gateways (Stripe, PayPal) to enable secure and reliable payment processing.
+\item Utilized Docker and Kubernetes for containerization and orchestration, ensuring scalability and high availability.
+\item Implemented comprehensive unit and integration tests to ensure code quality and prevent regressions.
+\item \textbf{Technologies}: Node.js, Express, MongoDB, Redis, Docker, Kubernetes, AWS, RESTful APIs
+\item \textbf{Impact:}
+    \begin{itemize}
+        \item Increased transaction processing speed by 25%.
+        \item Improved customer satisfaction scores by 15% due to enhanced API performance.
+        \item Reduced infrastructure costs by 10% through efficient resource utilization.
+    \end{itemize}
+\end{tightemize}
+\sectionsep
+
+\runsubsection{Data Pipeline for Customer Analytics}
+\descript{| Built a scalable data pipeline to collect, process, and analyze customer data for personalized recommendations and targeted marketing campaigns.}
+%\location{May 2013 – Aug 2013 | Mountain View, CA}
+\begin{tightemize}
+\item Developed a data pipeline using Python and Apache Kafka to ingest and process large volumes of customer data from various sources.
+\item Implemented data transformation and cleaning processes using Apache Spark to ensure data quality and consistency.
+\item Designed a data warehouse using Snowflake to store and analyze customer data for business intelligence and reporting.
+\item Developed machine learning models using scikit-learn to provide personalized product recommendations and targeted marketing campaigns.
+\item Deployed the data pipeline and machine learning models on AWS, utilizing services such as S3, EC2, and SageMaker.
+\item \textbf{Technologies}: Python, Apache Kafka, Apache Spark, Snowflake, scikit-learn, AWS (S3, EC2, SageMaker)
+\item \textbf{Impact:}
+    \begin{itemize}
+        \item Improved click-through rates on marketing campaigns by 20%.
+        \item Increased sales conversion rates by 10% through personalized product recommendations.
+        \item Provided valuable insights into customer behavior, leading to better product development decisions.
+    \end{itemize}
+\end{tightemize}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     RESEARCH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{Research}
+%\runsubsection{Cornell Robot Learning Lab}
+%\descript{| Researcher}
+%\location{Jan 2014 – Jan 2015 | Ithaca, NY}
+%Worked with \textbf{\href{http://www.cs.cornell.edu/~ashesh/}{Ashesh Jain}} and \textbf{\href{http://www.cs.cornell.edu/~asaxena/}{Prof Ashutosh Saxena}} to create \textbf{PlanIt}, a tool which  learns from large scale user preference feedback to plan robot trajectories in human environments.  
+%\sectionsep
+
+%\runsubsection{Cornell Phonetics Lab}
+%\descript{| Head Undergraduate Researcher}
+%\location{Mar 2012 – May 2013 | Ithaca, NY}
+%Led the development of \textbf{QuickTongue}, the first ever breakthrough tongue-controlled game with \textbf{\href{http://conf.ling.cornell.edu/~tilsen/}{Prof Sam Tilsen}} to aid in Linguistics research. 
+%\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     AWARDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{Awards} 
+%\begin{tabular}{rll}
+%2014	     & top 52/2500  & KPCB Engineering Fellow\\
+%2014	     & 1\textsuperscript{st}/50  & Microsoft Coding Competition, Cornell\\
+%2013	     & National  & Jump Trading Challenge Finalist\\
+%2013     & 7\textsuperscript{th}/120 & CS 3410 Cache Race Bot Tournament  \\
+%2012     & 2\textsuperscript{nd}/150 & CS 3110 Biannual Intra-Class Bot Tournament \\
+%2011     & National & Indian National Mathematics Olympiad (INMO) Finalist \\
+%\end{tabular}
+%\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     PUBLICATIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{Publications} 
+%\renewcommand\refname{\vskip -1.5em} % Couldn't get this working from the .cls file
+%\bibliographystyle{abbrv}
+%\bibliography{publications}
+%\nocite{*}
+
+\end{minipage} 
+\end{document}
